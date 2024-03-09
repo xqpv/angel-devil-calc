@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel or Devil Personality Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Angel/Devil calc</h2>
+        <form id="personalityForm">
+            <label for="name">Enter your name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <button type="button" onclick="calculatePersonality()">Calculate</button>
+        </form>
+        <div id="result" style="display: none;">
+            <h3>Your Personality:</h3>
+            <p><strong>Name:</strong> <span id="resultName"></span></p>
+            <p><strong>Angel or Devil:</strong> <span id="resultType"></span></p>
+            <p><strong>Personality Trait:</strong> <span id="resultTrait"></span></p>
+            <p><strong>gay percent:</strong> <span id="resultGay"></span>%</p>
+            <button type="button" onclick="tryAgain()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        function calculatePersonality() {
+            var name = document.getElementById('name').value;
+            var angelPercent = Math.floor(Math.random() * 100) + 1; // Random percentage for angel
+            var devilPercent = 100 - angelPercent; // Devil percentage will be complementary to angel
+            var personalityTrait = ['Angry', 'Cute', 'Happy', 'Sad', 'Confused', 'Mischievous']; // Array of personality traits
+            var randomTraitIndex = Math.floor(Math.random() * personalityTrait.length); // Randomly select a trait index
+            var personalityTraitResult = personalityTrait[randomTraitIndex]; // Get the personality trait
+            var gayPercent = Math.floor(Math.random() * 100) + 1; // Random percentage for being gay
+            
+            document.getElementById('resultName').innerText = name;
+            document.getElementById('resultType').innerText = (angelPercent >= devilPercent) ? 'Angel' : 'Devil';
+            document.getElementById('resultTrait').innerText = personalityTraitResult;
+            document.getElementById('resultGay').innerText = gayPercent;
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function tryAgain() {
+            document.getElementById('result').style.display = 'none'; // Hide the result div
+            document.getElementById('name').value = ''; // Clear the name input field
+        }
+    </script>
+</body>
+</html>
